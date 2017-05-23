@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+       <bean id="httpHost" class="org.apache.commons.httpclient.HttpHost">
+              <constructor-arg name="uri">
+                     <bean class="org.apache.commons.httpclient.URI">
+                            <constructor-arg name="scheme" value="${webservice.scheme}"/>
+                            <constructor-arg name="userinfo" value=""/>
+                            <constructor-arg name="host" value="${webservice.host}"/>
+                            <constructor-arg name="port" value="${webservice.port}"/>
+                     </bean>
+              </constructor-arg>
+       </bean>
+       <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+              <constructor-arg ref="clientHttpRequestFactory"/>
+       </bean>
+       <bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper"/>
+
+
+       <bean id="clientHttpRequestFactory"
+             class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
+              <constructor-arg ref="httpClient"/>
+       </bean>
+       <bean id="httpClient" factory-bean="httpClientBuilder"
+             factory-method="build" />
+
+       <bean id="httpClientBuilder" class="org.apache.http.impl.client.HttpClientBuilder"
+             factory-method="create">
+              <property name="SSLSocketFactory" ref="sslConnectionSocketFactory"/>
+              <property name="connectionManager" ref="pollingConnectionManager" />
+              <!--重试次数，默认是3次，没有开启-->
+              <property name="retryHandler">
+                     <bean class="org.apache.http.impl.client.DefaultHttpRequestRetryHandler">
+                            <constructor-arg name="retryCount" value="3"/>
+                            <constructor-arg name="requestSentRetryEnabled" value="true"/>
+                     </bean>
+              </property>
+              <property name="keepAliveStrategy">
+                     <bean class="org.apache.http.impl.client.DefaultConnectionKeepAliveStrategy"/>
+              </property>
+              <property name="defaultHeaders">
+                     <list>
+                            <bean class="org.apache.http.message.BasicHeader">
+                                   <constructor-arg name="name" value="User-Agent"/>
+                                   <constructor-arg name="value" value="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.16 Safari/537.36"/>
+                            </bean>
+                            <bean class="org.apache.http.message.BasicHeader">
+                                   <constructor-arg name="name" value="Accept-Encoding"/>
+                                   <constructor-arg name="value" value="gzip,deflate"/>
+                            </bean>
+                            <bean class="org.apache.http.message.BasicHeader">
+                                   <constructor-arg name="name" value="Accept-Language"/>
+                                   <constructor-arg name="value" value="zh-CN"/>
+                            </bean>
+                            <bean class="org.apache.http.message.BasicHeader">
+                                   <constructor-arg name="name" value="Connection"/>
+                                   <constructor-arg name="value" value="Keep-Alive"/>
+                            </bean>
+                     </list>
+              </property>
+              <property name="DefaultRequestConfig" >
+                     <bean  factory-bean="builder" factory-method="build"/>
+              </property>
+       </bean>
+       <bean id="builder" class="org.apache.http.client.config.RequestConfig" factory-method="custom">
+              <!-- 和服务器建立连接的timeout-->
+              <property name="connectTimeout" value="2000"/>
+              <!--从服务器读取数据的timeout-->
+              <property name="socketTimeout" value="20000"/>
+              <!-- 从连接池获取连接的timeout-->
+              <property name="connectionRequestTimeout" value="20000"/>
+       </bean>
+       <bean id="pollingConnectionManager"
+             class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager">
+              <constructor-arg name="socketFactoryRegistry" ref="socketFactoryRegistry"/>
+              <constructor-arg name="connFactory">
+                     <null/>
+              </constructor-arg>
+              <constructor-arg name="schemePortResolver">
+                     <null/>
+              </constructor-arg>
+              <constructor-arg name="dnsResolver">
+                     <null/>
+              </constructor-arg>
+              <!--长连接保持30秒-->
+              <constructor-arg name="timeToLive" value="20"/>
+              <constructor-arg name="tunit" value="SECONDS"/>
+              <!--总连接数-->
+              <property name="maxTotal" value="100" />
+              <!--同路由的并发数-->
+              <property name="defaultMaxPerRoute" value="100" />
+
+       </bean>
+       <bean id="sslConnectionSocketFactory" class="com.ai.emm.servicefacade.service.HttpsRestClientConfig"  factory-method="create"/>
+       <bean id="socketFactoryRegistry" class="com.ai.emm.servicefacade.service.HttpsRestClientConfig"  factory-method="build">
+              <constructor-arg ref="sslConnectionSocketFactory"/>
+       </bean>
+</beans>

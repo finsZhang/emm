@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <!--配置Ecard JPA-->
+    <bean id="entityManagerFactoryEcard" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSourceEcard"/>
+        <property name="persistenceProvider">
+            <bean class="org.hibernate.jpa.HibernatePersistenceProvider"/>
+        </property>
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+        </property>
+        <!-- 配置 JPA 提供商的适配器. 可以通过内部 bean 的方式来配置 -->
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <!-- 配置实体类所在的包 -->
+        <property name="packagesToScan" value="com.ai.emm.ecard.domain"/>
+        <!-- 配置 JPA 的基本属性. 例如 JPA 实现产品的属性 -->
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.connection.release_mode">AFTER_TRANSACTION</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- 配置 JPA 使用的事务管理器 -->
+    <bean id="transactionManagerEcard" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactoryEcard"/>
+    </bean>
+    <!-- 配置支持基于注解是事务配置 -->
+    <tx:annotation-driven transaction-manager="transactionManagerEcard" proxy-target-class="true"/>
+    <!-- 配置Spring data -->
+    <jpa:repositories base-package="com.ai.emm.ecard.dao"
+                      repository-impl-postfix="Impl"
+                      entity-manager-factory-ref="entityManagerFactoryEcard"
+                      transaction-manager-ref="transactionManagerEcard" />
+
+    <!--配置EMM JPA-->
+    <bean id="entityManagerFactoryEmm" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSourceEmm"/>
+        <property name="persistenceProvider">
+            <bean class="org.hibernate.jpa.HibernatePersistenceProvider"/>
+        </property>
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+        </property>
+        <!-- 配置 JPA 提供商的适配器. 可以通过内部 bean 的方式来配置 -->
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <!-- 配置实体类所在的包 -->
+        <property name="packagesToScan" value="com.ai.emm.domain"/>
+        <!-- 配置 JPA 的基本属性. 例如 JPA 实现产品的属性 -->
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.connection.release_mode">AFTER_TRANSACTION</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- 配置 JPA 使用的事务管理器 -->
+    <bean id="transactionManagerEmm" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactoryEmm"/>
+    </bean>
+    <!-- 配置支持基于注解是事务配置 -->
+    <tx:annotation-driven transaction-manager="transactionManagerEmm" proxy-target-class="true"/>
+    <!-- 配置Spring data -->
+    <jpa:repositories base-package="com.ai.emm.dao"
+                      repository-impl-postfix="Impl"
+                      entity-manager-factory-ref="entityManagerFactoryEmm"
+                      transaction-manager-ref="transactionManagerEmm" />
+</beans>

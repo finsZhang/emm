@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.emm.ecard.dao.mybatis.CardCardDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.ai.emm.ecard.domain.CardCard">
+        <result column="card_id" property="cardId"/>
+        <result column="card_business_code" property="cardBusinessCode"/>
+        <result column="id_no" property="idNo"/>
+        <result column="card_no" property="cardNo"/>
+        <result column="card_validity" property="cardValidity"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="nation" property="nation"/>
+        <result column="phone" property="phone"/>
+        <result column="address" property="address"/>
+        <result column="unit" property="unit"/>
+        <result column="cardholder_type" property="cardholderType"/>
+        <result column="city_code" property="cityCode"/>
+        <result column="card_serial" property="cardSerial"/>
+        <result column="chip_serial" property="chipSerial"/>
+        <result column="band_card" property="bandCard"/>
+        <result column="enable_flag" property="enableFlag"/>
+        <result column="deposit_flag" property="depositFlag"/>
+        <result column="card_time" property="cardTime"/>
+        <result column="deposit" property="deposit"/>
+        <result column="master_card_type" property="masterCardType"/>
+        <result column="daugher_card_type" property="daugherCardType"/>
+        <result column="card_status" property="cardStatus"/>
+        <result column="card_model" property="cardModel"/>
+        <result column="card_cost" property="cardCost"/>
+        <result column="bar_code" property="barCode"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modify_time" property="modifyTime"/>
+        <result column="id_type" property="idType"/>
+        <result column="birth" property="birth"/>
+        <result column="card_ncmsno" property="cardNcmsno"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        card_id,
+        card_business_code,
+        id_no,
+        card_no,
+        card_validity,
+        name,
+        sex,
+        nation,
+        phone,
+        address,
+        unit,
+        cardholder_type,
+        city_code,
+        card_serial,
+        chip_serial,
+        band_card,
+        enable_flag,
+        deposit_flag,
+        card_time,
+        deposit,
+        master_card_type,
+        daugher_card_type,
+        card_status,
+        card_model,
+        card_cost,
+        bar_code,
+        create_time,
+        modify_time,
+        id_type,
+        birth,
+        card_ncmsno
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.cardId">
+        INSERT INTO card_card (
+            card_id,
+            card_business_code,
+            id_no,
+            card_no,
+            card_validity,
+            name,
+            sex,
+            nation,
+            phone,
+            address,
+            unit,
+            cardholder_type,
+            city_code,
+            card_serial,
+            chip_serial,
+            band_card,
+            enable_flag,
+            deposit_flag,
+            card_time,
+            deposit,
+            master_card_type,
+            daugher_card_type,
+            card_status,
+            card_model,
+            card_cost,
+            bar_code,
+            create_time,
+            modify_time,
+            id_type,
+            birth,
+            card_ncmsno
+        ) VALUES (
+            #{pojo.cardId,jdbcType=VARCHAR},
+            #{pojo.cardBusinessCode},
+            #{pojo.idNo},
+            #{pojo.cardNo},
+            #{pojo.cardValidity},
+            #{pojo.name},
+            #{pojo.sex},
+            #{pojo.nation},
+            #{pojo.phone},
+            #{pojo.address},
+            #{pojo.unit},
+            #{pojo.cardholderType},
+            #{pojo.cityCode},
+            #{pojo.cardSerial},
+            #{pojo.chipSerial},
+            #{pojo.bandCard},
+            #{pojo.enableFlag},
+            #{pojo.depositFlag},
+            #{pojo.cardTime},
+            #{pojo.deposit},
+            #{pojo.masterCardType},
+            #{pojo.daugherCardType},
+            #{pojo.cardStatus},
+            #{pojo.cardModel},
+            #{pojo.cardCost},
+            #{pojo.barCode},
+            #{pojo.createTime},
+            #{pojo.modifyTime},
+            #{pojo.idType},
+            #{pojo.birth},
+            #{pojo.cardNcmsno}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.cardId">
+        INSERT INTO card_card
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.cardId!=null"> card_id,</if>
+            <if test="pojo.cardBusinessCode!=null"> card_business_code,</if>
+            <if test="pojo.idNo!=null"> id_no,</if>
+            <if test="pojo.cardNo!=null"> card_no,</if>
+            <if test="pojo.cardValidity!=null"> card_validity,</if>
+            <if test="pojo.name!=null"> name,</if>
+            <if test="pojo.sex!=null"> sex,</if>
+            <if test="pojo.nation!=null"> nation,</if>
+            <if test="pojo.phone!=null"> phone,</if>
+            <if test="pojo.address!=null"> address,</if>
+            <if test="pojo.unit!=null"> unit,</if>
+            <if test="pojo.cardholderType!=null"> cardholder_type,</if>
+            <if test="pojo.cityCode!=null"> city_code,</if>
+            <if test="pojo.cardSerial!=null"> card_serial,</if>
+            <if test="pojo.chipSerial!=null"> chip_serial,</if>
+            <if test="pojo.bandCard!=null"> band_card,</if>
+            <if test="pojo.enableFlag!=null"> enable_flag,</if>
+            <if test="pojo.depositFlag!=null"> deposit_flag,</if>
+            <if test="pojo.cardTime!=null"> card_time,</if>
+            <if test="pojo.deposit!=null"> deposit,</if>
+            <if test="pojo.masterCardType!=null"> master_card_type,</if>
+            <if test="pojo.daugherCardType!=null"> daugher_card_type,</if>
+            <if test="pojo.cardStatus!=null"> card_status,</if>
+            <if test="pojo.cardModel!=null"> card_model,</if>
+            <if test="pojo.cardCost!=null"> card_cost,</if>
+            <if test="pojo.barCode!=null"> bar_code,</if>
+            <if test="pojo.createTime!=null"> create_time,</if>
+            <if test="pojo.modifyTime!=null"> modify_time,</if>
+            <if test="pojo.idType!=null"> id_type,</if>
+            <if test="pojo.birth!=null"> birth,</if>
+            <if test="pojo.cardNcmsno!=null"> card_ncmsno,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.cardId!=null">#{pojo.cardId,jdbcType=VARCHAR},</if>
+            <if test="pojo.cardBusinessCode!=null">#{pojo.cardBusinessCode},</if>
+            <if test="pojo.idNo!=null">#{pojo.idNo},</if>
+            <if test="pojo.cardNo!=null">#{pojo.cardNo},</if>
+            <if test="pojo.cardValidity!=null">#{pojo.cardValidity},</if>
+            <if test="pojo.name!=null">#{pojo.name},</if>
+            <if test="pojo.sex!=null">#{pojo.sex},</if>
+            <if test="pojo.nation!=null">#{pojo.nation},</if>
+            <if test="pojo.phone!=null">#{pojo.phone},</if>
+            <if test="pojo.address!=null">#{pojo.address},</if>
+            <if test="pojo.unit!=null">#{pojo.unit},</if>
+            <if test="pojo.cardholderType!=null">#{pojo.cardholderType},</if>
+            <if test="pojo.cityCode!=null">#{pojo.cityCode},</if>
+            <if test="pojo.cardSerial!=null">#{pojo.cardSerial},</if>
+            <if test="pojo.chipSerial!=null">#{pojo.chipSerial},</if>
+            <if test="pojo.bandCard!=null">#{pojo.bandCard},</if>
+            <if test="pojo.enableFlag!=null">#{pojo.enableFlag},</if>
+            <if test="pojo.depositFlag!=null">#{pojo.depositFlag},</if>
+            <if test="pojo.cardTime!=null">#{pojo.cardTime},</if>
+            <if test="pojo.deposit!=null">#{pojo.deposit},</if>
+            <if test="pojo.masterCardType!=null">#{pojo.masterCardType},</if>
+            <if test="pojo.daugherCardType!=null">#{pojo.daugherCardType},</if>
+            <if test="pojo.cardStatus!=null">#{pojo.cardStatus},</if>
+            <if test="pojo.cardModel!=null">#{pojo.cardModel},</if>
+            <if test="pojo.cardCost!=null">#{pojo.cardCost},</if>
+            <if test="pojo.barCode!=null">#{pojo.barCode},</if>
+            <if test="pojo.createTime!=null">#{pojo.createTime},</if>
+            <if test="pojo.modifyTime!=null">#{pojo.modifyTime},</if>
+            <if test="pojo.idType!=null">#{pojo.idType},</if>
+            <if test="pojo.birth!=null">#{pojo.birth},</if>
+            <if test="pojo.cardNcmsno!=null">#{pojo.cardNcmsno},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT ALL
+        <foreach collection="pojos" item="pojo">
+            INTO card_card (
+            <include refid="all_column"/>
+            )VALUES(
+                #{pojo.cardId,jdbcType=VARCHAR},
+                #{pojo.cardBusinessCode},
+                #{pojo.idNo},
+                #{pojo.cardNo},
+                #{pojo.cardValidity},
+                #{pojo.name},
+                #{pojo.sex},
+                #{pojo.nation},
+                #{pojo.phone},
+                #{pojo.address},
+                #{pojo.unit},
+                #{pojo.cardholderType},
+                #{pojo.cityCode},
+                #{pojo.cardSerial},
+                #{pojo.chipSerial},
+                #{pojo.bandCard},
+                #{pojo.enableFlag},
+                #{pojo.depositFlag},
+                #{pojo.cardTime},
+                #{pojo.deposit},
+                #{pojo.masterCardType},
+                #{pojo.daugherCardType},
+                #{pojo.cardStatus},
+                #{pojo.cardModel},
+                #{pojo.cardCost},
+                #{pojo.barCode},
+                #{pojo.createTime},
+                #{pojo.modifyTime},
+                #{pojo.idType},
+                #{pojo.birth},
+                #{pojo.cardNcmsno}
+            )
+        </foreach>
+        select * from dual
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE card_card
+        <set>
+            <if test="pojo.cardId != null"> card_id = #{pojo.cardId}, </if>
+            <if test="pojo.cardBusinessCode != null"> card_business_code = #{pojo.cardBusinessCode}, </if>
+            <if test="pojo.idNo != null"> id_no = #{pojo.idNo}, </if>
+            <if test="pojo.cardNo != null"> card_no = #{pojo.cardNo}, </if>
+            <if test="pojo.cardValidity != null"> card_validity = #{pojo.cardValidity}, </if>
+            <if test="pojo.name != null"> name = #{pojo.name}, </if>
+            <if test="pojo.sex != null"> sex = #{pojo.sex}, </if>
+            <if test="pojo.nation != null"> nation = #{pojo.nation}, </if>
+            <if test="pojo.phone != null"> phone = #{pojo.phone}, </if>
+            <if test="pojo.address != null"> address = #{pojo.address}, </if>
+            <if test="pojo.unit != null"> unit = #{pojo.unit}, </if>
+            <if test="pojo.cardholderType != null"> cardholder_type = #{pojo.cardholderType}, </if>
+            <if test="pojo.cityCode != null"> city_code = #{pojo.cityCode}, </if>
+            <if test="pojo.cardSerial != null"> card_serial = #{pojo.cardSerial}, </if>
+            <if test="pojo.chipSerial != null"> chip_serial = #{pojo.chipSerial}, </if>
+            <if test="pojo.bandCard != null"> band_card = #{pojo.bandCard}, </if>
+            <if test="pojo.enableFlag != null"> enable_flag = #{pojo.enableFlag}, </if>
+            <if test="pojo.depositFlag != null"> deposit_flag = #{pojo.depositFlag}, </if>
+            <if test="pojo.cardTime != null"> card_time = #{pojo.cardTime}, </if>
+            <if test="pojo.deposit != null"> deposit = #{pojo.deposit}, </if>
+            <if test="pojo.masterCardType != null"> master_card_type = #{pojo.masterCardType}, </if>
+            <if test="pojo.daugherCardType != null"> daugher_card_type = #{pojo.daugherCardType}, </if>
+            <if test="pojo.cardStatus != null"> card_status = #{pojo.cardStatus}, </if>
+            <if test="pojo.cardModel != null"> card_model = #{pojo.cardModel}, </if>
+            <if test="pojo.cardCost != null"> card_cost = #{pojo.cardCost}, </if>
+            <if test="pojo.barCode != null"> bar_code = #{pojo.barCode}, </if>
+            <if test="pojo.createTime != null"> create_time = #{pojo.createTime}, </if>
+            <if test="pojo.modifyTime != null"> modify_time = #{pojo.modifyTime}, </if>
+            <if test="pojo.idType != null"> id_type = #{pojo.idType}, </if>
+            <if test="pojo.birth != null"> birth = #{pojo.birth}, </if>
+            <if test="pojo.cardNcmsno != null"> card_ncmsno = #{pojo.cardNcmsno} </if>
+        </set>
+        WHERE card_id = #{pojo.cardId}
+    </update>
+
+<!--auto generated by codehelper on 2017-05-23 18:36:27-->
+    <select id="findByCardId" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        from card_card
+        where card_id=#{cardId}
+    </select>
+</mapper>
+

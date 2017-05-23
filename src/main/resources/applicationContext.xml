@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- 1.配置 C3P0 数据源 -->
+    <bean id="PropertiesUtils" class="com.ai.emm.common.util.PropertiesUtils">
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="locations" value="classpath:*.properties"/>
+    </bean>
+
+    <bean id="app" class="com.ai.emm.common.util.ApplicationUtil"/>
+    <import resource="applicationContext-datasource.xml"/>
+    <!-- 导入mybatis配置 -->
+    <import resource="applicationContext-mybatis.xml"/>
+    <!-- 导入jpa配置 -->
+    <import resource="applicationContext-jpa.xml"/>
+
+    <import resource="webserviceContext.xml"/>
+    <!-- 启动对@AspectJ（面向切面）注解的支持 -->
+    <import resource="spring-quartz-cluster.xml"/>
+    <aop:aspectj-autoproxy />
+    <context:component-scan base-package="com.ai.emm">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+    </context:component-scan>
+</beans>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ai.emm.dao.mapper.LogRecordMapper">
+  <resultMap id="LogRecordVO" type="com.ai.emm.vo.LogRecordVO">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CJRQ" jdbcType="TIMESTAMP" property="cjrq" />
+    <result column="CKRLX" jdbcType="VARCHAR" property="ckrlx" />
+    <result column="DWMC" jdbcType="VARCHAR" property="dwmc" />
+    <result column="FKBZ" jdbcType="VARCHAR" property="fkbz" />
+    <result column="FKJGDM" jdbcType="VARCHAR" property="fkjgdm" />
+    <result column="FKJGMC" jdbcType="VARCHAR" property="fkjgmc" />
+    <result column="FKSJ" jdbcType="TIMESTAMP" property="fksj" />
+    <result column="FKXLH" jdbcType="VARCHAR" property="fkxlh" />
+    <result column="GMJJDM" jdbcType="VARCHAR" property="gmjjdm" />
+    <result column="GSSJ" jdbcType="TIMESTAMP" property="gssj" />
+    <result column="HYDM" jdbcType="VARCHAR" property="hydm" />
+    <result column="JGSJ" jdbcType="TIMESTAMP" property="jgsj" />
+    <result column="KCLX" jdbcType="VARCHAR" property="kclx" />
+    <result column="KH" jdbcType="VARCHAR" property="kh" />
+    <result column="KID" jdbcType="VARCHAR" property="kid" />
+    <result column="KLX" jdbcType="VARCHAR" property="klx" />
+    <result column="KXH" jdbcType="VARCHAR" property="kxh" />
+    <result column="KYXQ" jdbcType="TIMESTAMP" property="kyxq" />
+    <result column="KZLX" jdbcType="VARCHAR" property="kzlx" />
+    <result column="KZT" jdbcType="VARCHAR" property="kzt" />
+    <result column="MZDM" jdbcType="VARCHAR" property="mzdm" />
+    <result column="QYBZ" jdbcType="VARCHAR" property="qybz" />
+    <result column="REQUEST_ITEM_ID" jdbcType="VARCHAR" property="requestItemId" />
+    <result column="SQDZT" jdbcType="VARCHAR" property="sqdzt" />
+    <result column="TXDZ" jdbcType="VARCHAR" property="txdz" />
+    <result column="XB" jdbcType="VARCHAR" property="xb" />
+    <result column="XM" jdbcType="VARCHAR" property="xm" />
+    <result column="XPXLH" jdbcType="VARCHAR" property="xpxlh" />
+    <result column="YDDH" jdbcType="VARCHAR" property="yddh" />
+    <result column="YJ" jdbcType="DECIMAL" property="yj" />
+    <result column="YJBZ" jdbcType="VARCHAR" property="yjbz" />
+    <result column="YYBB" jdbcType="VARCHAR" property="yybb" />
+    <result column="YYCSDM" jdbcType="VARCHAR" property="yycsdm" />
+    <result column="YYLXBS" jdbcType="VARCHAR" property="yylxbs" />
+    <result column="YYQYRQ" jdbcType="TIMESTAMP" property="yyqyrq" />
+    <result column="YYYXRQ" jdbcType="TIMESTAMP" property="yyyxrq" />
+    <result column="ZJHM" jdbcType="VARCHAR" property="zjhm" />
+    <result column="ZJLB" jdbcType="VARCHAR" property="zjlb" />
+    <result column="ZXSJ" jdbcType="TIMESTAMP" property="zxsj" />
+    <result column="PEOPLE_ID" jdbcType="VARCHAR" property="peopleId" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <!-- 一对一关系 -->
+    <association property="peopleInfo" javaType="com.ai.cmp.business.entity.CmpPeopleInfo" resultMap="CmpPeopleInfo">    	
+    </association>
+  </resultMap>
+  <resultMap id="CmpPeopleInfo" type="com.ai.cmp.business.entity.CmpPeopleInfo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="BRDH2" jdbcType="VARCHAR" property="brdh2" />
+    <result column="CJSJ" jdbcType="TIMESTAMP" property="cjsj" />
+    <result column="CSRQ" jdbcType="TIMESTAMP" property="csrq" />
+    <result column="CZJMSBZH" jdbcType="VARCHAR" property="czjmsbzh" />
+    <result column="DHQH" jdbcType="VARCHAR" property="dhqh" />
+    <result column="DZLB" jdbcType="VARCHAR" property="dzlb" />
+    <result column="FYZHDM" jdbcType="VARCHAR" property="fyzhdm" />
+    <result column="JKDAH" jdbcType="VARCHAR" property="jkdah" />
+    <result column="MZDM" jdbcType="VARCHAR" property="mzdm" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="SFZHM" jdbcType="VARCHAR" property="sfzhm" />
+    <result column="SFZYXQSRQ" jdbcType="VARCHAR" property="sfzyxqsrq" />
+    <result column="SFZZZRQ" jdbcType="VARCHAR" property="sfzzzrq" />
+    <result column="XB" jdbcType="VARCHAR" property="xb" />
+    <result column="XLDM" jdbcType="VARCHAR" property="xldm" />
+    <result column="XM" jdbcType="VARCHAR" property="xm" />
+    <result column="XNHKH" jdbcType="VARCHAR" property="xnhkh" />
+    <result column="YLFYZFFS" jdbcType="VARCHAR" property="ylfyzffs" />
+    <result column="YLFYZFFS1" jdbcType="VARCHAR" property="ylfyzffs1" />
+    <result column="YLFYZFFS2" jdbcType="VARCHAR" property="ylfyzffs2" />
+    <result column="YLFYZFFS3" jdbcType="VARCHAR" property="ylfyzffs3" />
+    <result column="YZBM" jdbcType="VARCHAR" property="yzbm" />
+    <result column="ZJHM" jdbcType="VARCHAR" property="zjhm" />
+    <result column="ZJLX" jdbcType="VARCHAR" property="zjlx" />
+    <result column="ZPLJ" jdbcType="VARCHAR" property="zplj" />
+    <result column="ZPMC" jdbcType="VARCHAR" property="zpmc" />
+    <result column="ZYDM" jdbcType="VARCHAR" property="zydm" />
+    <result column="PEOPLE_PHOTO_ID" jdbcType="VARCHAR" property="peoplePhotoId" />
+    <result column="DWMC" jdbcType="VARCHAR" property="dwmc" />
+    <result column="TXDZ" jdbcType="VARCHAR" property="txdz" />
+    <result column="BRDH" jdbcType="VARCHAR" property="brdh" />
+    <result column="DZC" jdbcType="VARCHAR" property="dzc" />
+    <result column="DZQX" jdbcType="VARCHAR" property="dzqx" />
+    <result column="DZS" jdbcType="VARCHAR" property="dzs" />
+    <result column="DZSF" jdbcType="VARCHAR" property="dzsf" />
+    <result column="DZXZ" jdbcType="VARCHAR" property="dzxz" />
+  </resultMap>
+  
+  <select id="countByExample" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*) 
+    FROM CMP_BUSCARD_INFO T1 LEFT JOIN CMP_PEOPLE_INFO T2
+	  ON T1.PEOPLE_ID = T2.ID
+   WHERE 1=1
+    <if test="kzt != null">
+         AND T1.KZT = #{kzt}
+    </if>
+    <if test="fkbz != null">
+         AND T1.FKBZ = #{fkbz}
+    </if>
+    <if test="peopleId != null">
+         AND T1.PEOPLE_ID = #{peopleId}
+    </if>
+    <if test="fkxlh != null">
+         AND T1.FKXLH = #{fkxlh}
+    </if>
+    <if test="fkxlh2 != null">
+         AND T1.FKXLH LIKE #{fkxlh2}
+    </if>
+    <if test="sfzhm != null">
+         AND T2.SFZHM LIKE #{sfzhm}
+    </if>
+  </select>
+  
+  <select id="selectByExample" parameterType="java.util.Map" resultMap="CmpBuscardInfoDTO">
+    <include refid="pageMapper.head" />
+    SELECT
+    		*
+		FROM CMP_BUSCARD_INFO T1 LEFT JOIN CMP_PEOPLE_INFO T2
+		  ON T1.PEOPLE_ID = T2.ID
+	   WHERE 1=1
+	    <if test="kzt != null">
+	         AND T1.KZT = #{kzt}
+	    </if>
+	    <if test="fkbz != null">
+	         AND T1.FKBZ = #{fkbz}
+	    </if>
+	    <if test="peopleId != null">
+	         AND T1.PEOPLE_ID = #{peopleId}
+	    </if>
+	    <if test="fkxlh != null">
+	         AND T1.FKXLH = #{fkxlh}
+	    </if>
+	    <if test="fkxlh2 != null">
+	         AND T1.FKXLH LIKE #{fkxlh2}
+	    </if>
+	    <if test="sfzhm != null">
+	         AND T2.SFZHM LIKE #{sfzhm}
+	    </if>
+	    <if test="orderByClause != null">
+	      ORDER BY ${orderByClause}
+	    </if>
+	    <include refid="pageMapper.tail" />
+  </select>
+  
+</mapper>
